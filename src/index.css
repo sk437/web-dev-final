@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.wd-profile-image{
+    height: 48px;
+    width: 48px;
+    max-width: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+}
+.wd-profile-image-large{
+    height: 480px;
+    width: 480px;
+    max-width: 480px;
+    min-width: 480px;
+    border-radius: 50%;
+    float: left;
+}
+.wd-card-image{
+    height: 500px;
+    width: 353px;
+    max-width: 353px;
+    min-width: 353px;
+    max-height: 500px;
+    max-width: 500px;
+    float: left;
+}
