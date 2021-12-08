@@ -10,7 +10,10 @@ const LoginComponent = () => {
                 <br></br>
                 <label for="passWord">Password: </label>
                 <input type="password" class="form-control" id="passWord"></input>
-                <button class="btn btn-primary rounded-pill">Login</button>
+                <br></br>
+                <div className="text-center">
+                    <button className="btn btn-primary rounded-pill">Login</button>
+                </div>
             </form>
             </li>
         </ul>

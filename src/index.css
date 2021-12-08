@@ -18,13 +18,20 @@ code {
     min-width: 48px;
     border-radius: 50%;
 }
-.wd-profile-image-large{
-    height: 480px;
-    width: 480px;
-    max-width: 480px;
-    min-width: 480px;
+.wd-profile-image-comment{
+    height: 48px;
+    width: 48px;
+    max-width: 48px;
+    min-width: 48px;
     border-radius: 50%;
     float: left;
+}
+.wd-profile-image-large{
+    height: 100px;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    border-radius: 50%;
 }
 .wd-card-image{
     height: 500px;
@@ -34,4 +41,16 @@ code {
     max-height: 500px;
     max-width: 500px;
     float: left;
+}
+.wd-card-image-small{
+    height: 200px;
+    width: 141px;
+    max-width: 141px;
+    min-width: 141px;
+    max-height: 200px;
+    max-width: 200px;
+    float: left;
+}
+.wd-float-right{
+    float: right;
 }

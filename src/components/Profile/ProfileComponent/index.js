@@ -3,6 +3,9 @@ import MTGColor from "./MTGColor";
 
 const ProfileComponent = ({
                             user = {
+                                userId: "userid-1",
+                                reports: 0,
+                                designation: "moderator",
                                 profPic: "./charlesV.jpg",
                                 userName: "Charles V",
                                 favoriteColors: ["./mtgwhite.png", "./mtgblack.png"],
@@ -14,10 +17,17 @@ const ProfileComponent = ({
     return(
         <ul className="list-group">
             <li className="list-group-item">
+                <div className="text-center">
                 <img className="wd-profile-image-large" src={curProfPic} alt=""/>
                 <p>Name: {user.userName}</p>
                 {user.favoriteColors.map(color => {return(<MTGColor c={color}/>);})}
+                </div>
+                <hr></hr>
                 <p>Biography: {user.bio}</p>
+                <br></br>
+                <div className="text-center">
+                    <button className="btn btn-danger">Report Profile</button>
+                </div>
             </li>
         </ul>
     );

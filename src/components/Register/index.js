@@ -1,9 +1,18 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import NavigationSidebar from "../NavigationSidebar";
+import RegisterComponent from "./RegisterComponent";
 
 const Register = () => {
     return(
-        <span className="text-normal">TODO</span>
+        <div className="row mt-2">
+            <div className="col-2 m-1">
+                <NavigationSidebar active='home'/>
+            </div>
+            <div className="col-9"
+                 style={{"position": "relative"}}>
+            <RegisterComponent/>
+            </div>
+        </div>
     );
 };
 export default Register;

@@ -13,8 +13,8 @@ const NavigationSidebar = ({
                 <Link to="/search" className={`list-group-item ${active === 'search'? 'active' : ""} list-group-item-action`}>
                     <i className="fas fa-search"></i><span className="d-none d-xl-inline"> Search</span>
                 </Link>
-                <Link to="/profile" className={`list-group-item ${active === 'profile'? 'active' : ""} list-group-item-action`}>
-                    <i className="fas fa-profile"></i><span className="d-none d-xl-inline"> Profile</span>
+                <Link to="/profile/userid-1" className={`list-group-item ${active === 'profile'? 'active' : ""} list-group-item-action`}>
+                    <i className="fas fa-user"></i><span className="d-none d-xl-inline"> Profile</span>
                 </Link>
                 <Link to="/privacy-policy" className={`list-group-item ${active === 'privacy-policy'? 'active' : ""} list-group-item-action`}>
                     <i className="fas fa-lock"></i><span className="d-none d-xl-inline"> Privacy Policy</span>

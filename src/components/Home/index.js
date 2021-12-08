@@ -2,7 +2,7 @@ import React from "react";
 import NavigationSidebar from "../NavigationSidebar";
 import LoginComponent from "../LoginComponent";
 import IntroPanel from "./IntroPanel";
-
+import CardListComponent from "../ListOfCardsComponent"
 
 const Home = () => {
     return(
@@ -14,6 +14,9 @@ const Home = () => {
                  style={{"position": "relative"}}>
             <LoginComponent/>
             <IntroPanel/>
+            <br></br>
+            <p className="text-center">Some Popularly Discussed Cards</p>
+            <CardListComponent/>
             </div>
         </div>
     );

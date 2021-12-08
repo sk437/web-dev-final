@@ -1,7 +1,7 @@
 import './vendors/bootstrap/css/bootstrap.min.css';
 import './vendors/fontawesome/css/all.min.css';
 import './vendors/bootstrap/css/bootstrap.min.lux.css'
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import {Link} from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
@@ -19,16 +19,16 @@ function App() {
             <Route path={["/", "/home"]} exact={true}>
                 <Home/>
             </Route>
-            <Route path={["/profile"]} exact={true}>
+            <Route path={["/profile"]}>
                 <Profile/>
             </Route>
-            <Route path={["/edit-profile"]} exact={true}>
+            <Route path={["/edit-profile"]}>
                 <EditProfile/>
             </Route>
-            <Route path={["/search"]} exact={true}>
+            <Route path={["/search"]}>
                 <Search/>
             </Route>
-            <Route path={["/details"]} exact={true}>
+            <Route path={["/details"]}>
                 <Details/>
             </Route>
             <Route path={["/privacy-policy"]} exact={true}>
