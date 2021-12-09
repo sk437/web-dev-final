@@ -1,46 +1,41 @@
 [
   {
-    "userId": "userid-1",
     "reports": 0,
     "designation": "moderator",
     "profPic": "./charlesV.jpg",
-    "userName": "Charles V",
+    "username": "CharlesV",
     "favoriteColors": ["./mtgwhite.png", "./mtgblack.png"],
     "bio": "Charles, by the grace of God, Holy Roman Emperor, forever August, King of Germany, King of Italy, King of all Spains, of Castile, Aragon, León, Navarra, Grenada, Toledo, Valencia, Galicia, Majorca, Sevilla, Cordova, Murcia, Jaén, Algarves, Algeciras, Gibraltar, the Canary Islands, King of Two Sicilies, of Sardinia, Corsica, King of Jerusalem, King of the Western and Eastern Indies, Lord of the Islands and Main Ocean Sea, Archduke of Austria, Duke of Burgundy, Brabant, Lorraine, Styria, Carinthia, Carniola, Limburg, Luxembourg, Gelderland, Neopatria, Württemberg, Landgrave of Alsace, Prince of Swabia, Asturia and Catalonia, Count of Flanders, Habsburg, Tyrol, Gorizia, Barcelona, Artois, Burgundy Palatine, Hainaut, Holland, Seeland, Ferrette, Kyburg, Namur, Roussillon, Cerdagne, Zutphen, Margrave of the Holy Roman Empire, Burgau, Oristano and Gociano, Lord of Frisia, the Wendish March, Pordenone, Biscay, Molin, Salins, Tripoli and Mechelen."
   },
   {
-    "userId": "userid0",
     "reports": 10,
     "designation": "user",
     "profPic": "./tibalt.jpg",
-    "userName": "Tibalt",
+    "username": "Tibalt",
     "favoriteColors": ["./mtgred.png"],
     "bio": "Actually useless"
   },
   {
-    "userId": "userid1",
     "reports": 10,
     "designation": "user",
     "profPic": "./liliana.jpg",
-    "userName": "Liliana",
+    "username": "Liliana",
     "favoriteColors": ["./mtgblack.png"],
     "bio": "In rhoncus rhoncus arcu a molestie. Sed nec nisl nibh. Nunc eget efficitur massa, id euismod quam. Nam vulputate viverra ex in lacinia. Sed egestas libero a ornare hendrerit. Pellentesque felis tortor, dignissim eget turpis eu, molestie imperdiet massa. Proin et neque a augue fermentum efficitur fringilla vel quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur lacinia elementum euismod. Donec pellentesque quam eu iaculis sodales. Sed at massa rutrum, euismod felis et, consectetur diam. Sed eros libero, tempor vitae mattis sed, tincidunt vitae tellus. Morbi pellentesque finibus elementum. Sed nec tellus nec erat ornare hendrerit. Pellentesque pretium mauris cursus ipsum elementum tempus. Nulla sed tincidunt leo."
   },
   {
-    "userId": "userid2",
     "reports": 3,
     "designation": "user",
     "profPic": "./nicolbolas.jpg",
-    "userName": "Nicol Bolas",
+    "username": "Nicol Bolas",
     "favoriteColors": ["./mtgblack.png", "./mtgblue.png","./mtgred.png"],
     "bio": "Vestibulum venenatis, massa in malesuada ultricies, nisl eros faucibus ipsum, et bibendum metus ligula vel quam. Sed nisl felis, sagittis ut nisl varius, commodo dictum urna. Integer mattis varius metus vel sollicitudin. Aenean rutrum mollis enim, a aliquam libero imperdiet mollis. Pellentesque fermentum non mauris et vulputate. Suspendisse ipsum nunc, ultricies ut ipsum sed, egestas feugiat quam. Nunc semper est quis sem cursus, sed hendrerit felis condimentum. Donec suscipit at sapien euismod elementum. Aenean condimentum congue faucibus. Quisque id egestas justo, sed vehicula ipsum. Nullam vestibulum pretium ex, vitae lacinia mauris dictum id. Quisque dui diam, sagittis nec ipsum vitae, cursus sodales neque."
   },
   {
-    "userId": "userid3",
     "reports": 2,
     "designation": "user",
     "profPic": "./karn.jpg",
-    "userName": "Karn",
+    "username": "Karn",
     "favoriteColors": ["./mtggreen.png"],
     "bio": "Integer accumsan felis in eros porta, vitae aliquam est maximus. Cras felis sapien, sagittis nec lorem at, mattis venenatis dolor. Praesent luctus purus sem, at fringilla nisl fringilla in. Fusce lacinia, turpis non suscipit tempor, eros sapien faucibus felis, in porttitor quam risus luctus magna. Cras a velit varius ante consectetur lacinia. Quisque et scelerisque quam. Aenean non mi sollicitudin ligula bibendum feugiat vitae vitae enim. Mauris convallis ornare faucibus. Cras consectetur, ante eu tristique rhoncus, lectus purus accumsan nulla, nec suscipit massa magna quis dui. Curabitur condimentum nulla neque, non congue tortor venenatis eu. Nulla volutpat sapien leo, suscipit semper odio mattis et. Nulla sodales tellus sed ultrices pulvinar. Curabitur pulvinar viverra interdum. Integer et ligula vitae enim egestas egestas. Integer ipsum mauris, viverra sit amet dui et, sollicitudin mattis arcu."
   }

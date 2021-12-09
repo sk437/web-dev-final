@@ -1,73 +1,73 @@
 [
   {
   "cardId": "5a5841fa-4f30-495a-b840-3ef5a2af8fad",
-  "userId": "userid-1",
+  "username": "CharlesV",
   "body": "This is a comment about One with Nothing",
   "flags": 0
   },
   {
     "cardId": "5a5841fa-4f30-495a-b840-3ef5a2af8fad",
-    "userId": "userid0",
+    "username": "Tibalt",
     "body": "This is another comment about One with Nothing",
     "flags": 0
   },
   {
     "cardId": "e653437e-2e56-4443-aec5-5bb7d8860238",
-    "userId": "userid1",
+    "username": "Liliana",
     "body": "This is a comment about Liliana of the Veil",
     "flags": 0
   },
   {
     "cardId": "e653437e-2e56-4443-aec5-5bb7d8860238",
-    "userId": "userid2",
+    "username": "Nicol Bolas",
     "body": "This is another comment about Liliana of the Veil",
     "flags": 0
   },
   {
     "cardId": "d0fc130e-57ed-40a7-a9ba-d689e7dc3698",
-    "userId": "userid3",
+    "username": "Karn",
     "body": "This is a comment about Sphinx Sovereign",
     "flags": 0
   },
   {
     "cardId": "d0fc130e-57ed-40a7-a9ba-d689e7dc3698",
-    "userId": "userid-1",
+    "username": "CharlesV",
     "body": "This is another comment about Sphinx Sovereign",
     "flags": 0
   },
   {
     "cardId": "14a360b6-c7b4-4b25-8288-b3bb8d527bda",
-    "userId": "userid0",
+    "username": "Tibalt",
     "body": "This is a comment about Jin-Gitaxis, Core Augur",
     "flags": 0
   },
   {
     "cardId": "14a360b6-c7b4-4b25-8288-b3bb8d527bda",
-    "userId": "userid1",
+    "username": "Liliana",
     "body": "This is another comment about Jin-Gitaxis, Core Augur",
     "flags": 0
   },
   {
     "cardId": "a8e328c6-3a84-49cf-a1a3-1d1e5373d274",
-    "userId": "userid2",
+    "username": "Nicol Bolas",
     "body": "This is a comment about Abrupt Decay",
     "flags": 0
   },
   {
     "cardId": "a8e328c6-3a84-49cf-a1a3-1d1e5373d274",
-    "userId": "userid3",
+    "username": "Karn",
     "body": "This is another comment about Abrupt Decay",
     "flags": 0
   },
   {
     "cardId": "b0d88239-43dc-46b8-8d46-626e2f8f1070",
-    "userId": "userid-1",
+    "username": "CharlesV",
     "body": "This is a comment about Dark Confidant",
     "flags": 0
   },
   {
     "cardId": "b0d88239-43dc-46b8-8d46-626e2f8f1070",
-    "userId": "userid0",
+    "username": "Tibalt",
     "body": "This is another comment about Dark Confidant",
     "flags": 0
   }

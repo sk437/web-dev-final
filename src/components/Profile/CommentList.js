@@ -4,12 +4,13 @@ import Comments from "../comments"
 import Cards from "../ListOfCardsComponent/cards"
 
 
-const CommentList = (userId = "userid-1") => {
+const CommentList = (userId = "Charles V") => {
     function isCommentForUser(comment) {
-        return comment.userId == userId.userId;
+        return comment.username === userId.userId;
     };
+    console.log(userId);
     function getCardById(cardId) {
-        return Cards.find(card => {return card.id == cardId})
+        return Cards.find(card => {return card.id === cardId})
     }
     return (
     <>
