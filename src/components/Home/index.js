@@ -22,7 +22,7 @@ const Home = () => {
                 <div className="col-9"
                      style={{"position": "relative"}}>
                     <IntroPanel/>
-                    <br></br>
+                    <br/>
                     <p className="text-center">Some Popularly Discussed Cards</p>
                     <CardListComponent/>
                 </div>

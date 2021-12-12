@@ -1,72 +1,63 @@
-import React from "react";
-import MTGColor from "./MTGColor"
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import {fetchAllUsers} from "../../../services/users-service"
+import {useDispatch, useSelector} from "react-redux";
+
+const selectAllUsers = (state) => state.users;
 
 const RegisterComponent = () => {
+    const users = useSelector(selectAllUsers);
+    const dispatch = useDispatch();
+    useEffect(() => fetchAllUsers(dispatch), []);
+    const [user, setUser] = useState({username: '', password: '', profPic: '/images/anonymous.jpg',
+        bio: "No Bio", isBanned: false, reports: 0});
+    const register = () => {
+        const API_URL = 'http://localhost:4000/api';
+        fetch(`${API_URL}/register`, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    };
+    function isValidUsername(name) {
+        return users.filter(u => u.username === name).length === 0;
+    }
     return(
         <ul className="list-group">
             <li className="list-group-item">
             <form>
-                <label for="userName">Enter Username: </label>
-                <input type="text" class="form-control" id="userName" placeholder="Username"></input>
-                <br></br>
-                <label for="passWord">Enter Password: </label>
-                <input type="password" class="form-control" id="passWord" placeholder="Password"></input>
-                <br></br>
-                <label for="confirmPassWord">Confirm Password: </label>
-                <input type="password" class="form-control" id="confirmPassWord" placeholder="Retype Password"></input>
-                <br></br>
-                <p className="text-primary text-center">Choose a profile image</p>
-                <hr></hr>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="radio" defaultChecked="checked" name="profimage" id="tibalt"></input>
-                <label className="form-check-label" for="tibalt">
-                    <MTGColor c="./tibalt.jpg"/>
+                <label>Enter Username:
+                <input type="text" className="form-control" id="userName" placeholder="Username"
+                       value={user.username}
+                       onChange={(e) => setUser({...user, username: e.target.value})}/>
                 </label>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="radio" name="profimage" id="nicolbolas"></input>
-                <label className="form-check-label" for="nicolbolas">
-                    <MTGColor c="./nicolbolas.jpg"/>
+                <br/>
+                <label>Enter Password:
+                <input type="password" className="form-control" id="passWord" placeholder="Password"
+                       value={user.password}
+                       onChange={(e) => setUser({...user, password: e.target.value})}/>
                 </label>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="radio" name="profimage" id="liliana"></input>
-                <label className="form-check-label" for="liliana">
-                    <MTGColor c="./liliana.jpg"/>
+                <br/>
+                <label >Confirm Password:
+                <input type="password" className="form-control" id="confirmPassWord" placeholder="Retype Password"
+                       onChange={(e) => setUser({...user, match: e.target.value === user.password})}
+                       />
                 </label>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="radio" name="profimage" id="karn"></input>
-                <label className="form-check-label" for="karn">
-                    <MTGColor c="./karn.jpg"/>
-                </label>
-                <br></br>
-                <p className="text-primary text-center">Choose your favorite colors</p>
-                <hr></hr>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="checkbox" value="" id="white"></input>
-                <label className="form-check-label" for="white">
-                    <MTGColor c="./mtgwhite.png"/>
-                </label>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="checkbox" value="" id="blue"></input>
-                <label className="form-check-label" for="blue">
-                    <MTGColor c="./mtgblue.png"/>
-                </label>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="checkbox" value="" id="red"></input>
-                <label className="form-check-label" for="red">
-                    <MTGColor c="./mtgred.png"/>
-                </label>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="checkbox" value="" id="black"></input>
-                <label className="form-check-label" for="black">
-                    <MTGColor c="./mtgblack.png"/>
-                </label>
-                <span className="ml-4"></span>
-                <input className="form-check-input" type="checkbox" value="" id="green"></input>
-                <label className="form-check-label" for="green">
-                    <MTGColor c="./mtggreen.png"/>
-                </label>
+                <br/>
                 <div className="text-center">
-                    <button class="btn btn-primary rounded-pill">Register</button>
+                    {(!user.match || user.username.length === 0 || !isValidUsername(user.username))? <>
+                            <button className="btn btn-primary rounded-pill"
+                                    onClick={register} disabled="disabled">Register</button>
+                        </> :
+                    <Link to={`/edit-profile/${user.username}`}><button className="btn btn-primary rounded-pill"
+                            onClick={register}>Register</button></Link>}
+                </div>
+                <br/>
+                <div className="text-center">
+                    <span className="text-warning">{(!user.match)? "Passwords Do Not Match" : ""}</span>
                 </div>
             </form>
             </li>

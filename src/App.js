@@ -11,38 +11,48 @@ import Details from "./components/Details";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import {Provider} from "react-redux";
+import {combineReducers, createStore} from "redux";
+import comments from "./reducers/comments";
+import users from "./reducers/users";
+import moderators from "./reducers/moderators"
+
+const reducer = combineReducers({mtg: comments, users, moderators})
+const store = createStore(reducer);
 
 function App() {
-  return (
-    <BrowserRouter>
-        <div className="container">
-            <Route path={["/", "/home"]} exact={true}>
-                <Home/>
-            </Route>
-            <Route path={["/profile"]}>
-                <Profile/>
-            </Route>
-            <Route path={["/edit-profile"]}>
-                <EditProfile/>
-            </Route>
-            <Route path={["/search"]}>
-                <Search/>
-            </Route>
-            <Route path={["/details"]}>
-                <Details/>
-            </Route>
-            <Route path={["/privacy-policy"]} exact={true}>
-                <PrivacyPolicy/>
-            </Route>
-            <Route path={["/login"]} exact={true}>
-                <Login/>
-            </Route>
-            <Route path={["/register"]} exact={true}>
-                <Register/>
-            </Route>
-        </div>
-    </BrowserRouter>
-  );
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <div className="container">
+                    <Route path={["/", "/home"]} exact={true}>
+                        <Home/>
+                    </Route>
+                    <Route path={["/profile"]}>
+                        <Profile/>
+                    </Route>
+                    <Route path={["/edit-profile"]}>
+                        <EditProfile/>
+                    </Route>
+                    <Route path={["/search"]}>
+                        <Search/>
+                    </Route>
+                    <Route path={["/details"]}>
+                        <Details/>
+                    </Route>
+                    <Route path={["/privacy-policy"]} exact={true}>
+                        <PrivacyPolicy/>
+                    </Route>
+                    <Route path={["/login"]} exact={true}>
+                        <Login/>
+                    </Route>
+                    <Route path={["/register"]} exact={true}>
+                        <Register/>
+                    </Route>
+                </div>
+            </BrowserRouter>
+        </Provider>
+    );
 }
 
 export default App;

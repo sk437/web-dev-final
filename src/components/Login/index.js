@@ -1,6 +1,6 @@
 import React from "react";
 import NavigationSidebar from "../NavigationSidebar";
-import LoginComponent from "./LoginComponent";
+import LoginComponent from "./LoginInput";
 
 const Login = () => {
     return(

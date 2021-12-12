@@ -54,3 +54,7 @@ code {
 .wd-float-right{
     float: right;
 }
+
+.wd-max-width{
+    width: 100%;
+}

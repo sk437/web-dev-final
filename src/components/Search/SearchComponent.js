@@ -3,6 +3,7 @@ import MTGColor from "./MTGColor"
 
 const SearchComponent = () => {
     return(
+
         <ul className="list-group">
             <li className="list-group-item">
             <form>
