@@ -30,7 +30,7 @@ const RegisterComponent = () => {
             <li className="list-group-item">
             <form>
                 <label>Enter Username:
-                <input type="text" className="form-control" id="userName" placeholder="Username"
+                <input type="username" className="form-control" id="userName" placeholder="Username"
                        value={user.username}
                        onChange={(e) => setUser({...user, username: e.target.value})}/>
                 </label>
@@ -48,7 +48,7 @@ const RegisterComponent = () => {
                 </label>
                 <br/>
                 <div className="text-center">
-                    {(!user.match || user.username.length === 0 || !isValidUsername(user.username))? <>
+                    {(!user.match || user.username.length === 0 || !isValidUsername(user.username) || user.username.includes(" "))? <>
                             <button className="btn btn-primary rounded-pill"
                                     onClick={register} disabled="disabled">Register</button>
                         </> :

@@ -9,7 +9,7 @@ export const fetchAllModerators = (dispatch) =>
         })
     );
 
-export const createNewModerator = (field) =>
+export const createNewModerator = (dispatch, field) =>
     fetch(MODERATOR_API, {
         method: 'POST',
         body: JSON.stringify(field),
@@ -17,10 +17,15 @@ export const createNewModerator = (field) =>
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json());
+        .then(response => response.json())
+        .then(mods =>
+        dispatch({
+            type: 'fetch-all-mods',
+            mods
+        }));
 
-export const updateBanned = (moderator, bannedUser) =>
-    fetch(`${MODERATOR_API}/${moderator._id}/ban`, {
+export const banUser = (moderator, bannedUser) =>
+    fetch(`${MODERATOR_API}/${moderator}/ban`, {
         method: 'PUT',
         body: JSON.stringify(bannedUser),
         headers: {

@@ -7,6 +7,13 @@ const users = (state = [],action) => {
             return(
                 action.users
             );
+        case 'update-ban':
+            return (state.map(user => {
+                if (user.username === action.user) {
+                    user.isBanned = !user.isBanned
+                }
+                return(user);
+            }));
         default:
             return(state);
     }

@@ -141,11 +141,21 @@ const CardListItem = ({
     <>
         <li className="list-group-item">
             <Link to={`/details/user=?${url}/${card.id}`}>
-                <img className="wd-card-image-small mr-2" src={card.image_uris.png} alt=""/></Link>
+                {(card.image_uris)?
+                <img className="wd-card-image-small mr-2" src={card.image_uris.png} alt=""/> :
+                <>
+                <img className="wd-card-image-small mr-2" src={card.card_faces[0].image_uris.png} alt=""/>
+                <img className="wd-card-image-small mr-2" src={card.card_faces[1].image_uris.png} alt=""/>
+                </>
+                } </Link>
             <h5>{card.name}</h5>
             <p>Converted Mana Cost: {card.cmc}</p>
             <p>Type: {card.type_line}</p>
-            <p>Text: {card.oracle_text}</p>
+                <p>Text: {(card.oracle_text)? card.oracle_text :
+                <>
+                {card.card_faces[0].oracle_text}  {"//"}  {card.card_faces[1].oracle_text}
+                </>}
+                </p>
         </li>
     </>
     );

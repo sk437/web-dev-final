@@ -1,8 +1,14 @@
-import React from "react";
+import {useEffect, React} from "react";
 import NavigationSidebar from "../NavigationSidebar";
 import LoginComponent from "../LoginComponent";
 import IntroPanel from "./IntroPanel";
 import CardListComponent from "../Profile/CommentList"
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAllModerators} from "../../services/mods-service"
+import ReportedCommentsComponent from "./ReportedCommentsComponent"
+import ReportedUsersComponent from "./ReportedUsersComponent"
+
+const selectAllModerators = (state) => state.moderators;
 
 const Home = () => {
     let url = window.location.href
@@ -17,6 +23,11 @@ const Home = () => {
     else {
         url = "";
     }
+
+    const mods = useSelector(selectAllModerators);
+    const dispatch = useDispatch();
+    useEffect(() => fetchAllModerators(dispatch), []);
+
     return (
         <>
             <div className="row mt-2">
@@ -36,9 +47,21 @@ const Home = () => {
                     <IntroPanel/>
                     <br/>
                     {(url === "")?
-                    <p className="text-center">Some Popularly Discussed Cards</p> :
-                        <p className="text-center">Cards You Have Commented On Recently</p>}
+                    <>
+                    <p className="text-center">Some Popularly Discussed Cards</p>
                     <CardListComponent userId={url}/>
+                    </>:
+                        (mods.filter(m => m.username === url).length > 0)?
+                        <>
+                        <div className="row">
+                            <div className="col-6"><ReportedCommentsComponent/></div>
+                            <div className="col-6"><ReportedUsersComponent/></div>
+                        </div>
+                        </>:
+                        <>
+                        <p className="text-center">Cards You Have Commented On Recently</p>
+                        <CardListComponent userId={url}/>
+                        </>}
                 </div>
             </div>
         </>

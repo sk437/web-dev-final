@@ -11,6 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wd-word-break {
+    word-break: break-all
+}
+
 .wd-profile-image{
     height: 48px;
     width: 48px;

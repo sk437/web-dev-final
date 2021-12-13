@@ -17,6 +17,7 @@ import comments from "./reducers/comments";
 import users from "./reducers/users";
 import moderators from "./reducers/moderators";
 import Reported from "./components/Reported";
+import Banned from "./components/Banned";
 
 const reducer = combineReducers({users: users, comments: comments, moderators: moderators})
 const store = createStore(reducer);
@@ -55,6 +56,9 @@ function App() {
                     </Route>
                     <Route path={"/reported"}>
                         <Reported/>
+                    </Route>
+                    <Route path={"/banned"}>
+                        <Banned/>
                     </Route>
                 </div>
             </BrowserRouter>

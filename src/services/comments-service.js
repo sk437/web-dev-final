@@ -29,19 +29,18 @@ export const deleteComment = (dispatch, comment) =>
     fetch(`${COMMENT_API}/${comment._id}`, {
         method: 'DELETE'
     }).then(response => dispatch({
-        type: 'fetch-all-comments',
+        type: 'delete-comment',
         comment
     }));
 
-export const flagComment = (dispatch, comment) =>
+export const flagComment = (dispatch, comment, body) => {
     fetch(`${COMMENT_API}/${comment._id}/flags`, {
-        method: 'PUT'
-    })
-        .then(response =>
-            dispatch({
-                type: 'fetch-all-comments',
-                comment
-            }));
+        method: 'PUT',
+        body: JSON.stringify(body),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })};
 
 
 

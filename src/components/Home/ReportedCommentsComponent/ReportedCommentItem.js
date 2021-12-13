@@ -1,8 +1,8 @@
-import React, {useEffect} from "react"
+import {React, useEffect} from "react"
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAllUsers} from "../../services/users-service";
-import {flagComment} from "../../services/comments-service";
+import {fetchAllUsers} from "../../../services/users-service";
+import {deleteComment} from "../../../services/comments-service";
 
 const selectAllUsers = (state) => state.users;
 
@@ -38,24 +38,18 @@ const CommentListItem = ({
         return user.username === url;
     });
 
-    function reportHandler() {
-        let reportedBy = url;
-        let reports = comment.flags + 1;
-        let fields = [reports, reportedBy];
-        flagComment(dispatch, comment, fields)
+    function deleteHandler() {
+        deleteComment(dispatch, comment);
     }
     return(
     <>
         <li className="list-group-item">
             <img className="wd-profile-image-comment mr-2" src={poster.profPic} alt=''/>
-            {(user.username === poster.username || comment.flaggedBy.includes(user.username))?
-                <button className="btn btn-danger btn-sm wd-float-right" disabled="disabled">Report</button>:
-                <>
-                <Link to={`/reported/user=?${url}`}><button className="btn btn-danger btn-sm wd-float-right" onClick={reportHandler}>Report</button></Link>
-                </>
-            }
+            <button className="btn btn-danger wd-float-right" onClick={deleteHandler}>Remove Comment</button>
+            <span className="text-danger wd-float-right">Flags: {comment.flags}</span>
             <Link to={`/profile/user=?${url}/${poster.username}`}><h5>{poster.username}</h5></Link>
-            <span>{comment.body}</span>
+            <br/>
+            <p className="wd-word-break">{comment.body}</p>
         </li>
     </>
     );

@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from "react";
 import MTGColor from "./MTGColor";
 import {Link} from "react-router-dom";
-import {updateReport} from "../../../services/users-service"
+import {updateReport, updateBanned} from "../../../services/users-service"
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAllModerators, banUser, createNewModerator} from "../../../services/mods-service"
+
+const selectAllModerators = (state) => state.moderators;
 
 
 const ProfileComponent = ({
@@ -24,11 +28,24 @@ const ProfileComponent = ({
         curUser = "";
     }
 
+    const mods = useSelector(selectAllModerators);
+    const dispatch = useDispatch();
+    useEffect(() => fetchAllModerators(dispatch), []);
+
     function reportUser() {
         let flags = user.reports + 1;
         let reporter = curUser;
         let fields = [flags, reporter]
         updateReport(user.username, fields);
+    }
+
+    function banHammer() {
+        updateBanned(dispatch, user.username, [true]);
+        banUser(curUser, [user.username]);
+    }
+
+    function modUser() {
+        createNewModerator(dispatch, [user.username])
     }
     return(
         <ul className="list-group">
@@ -36,6 +53,18 @@ const ProfileComponent = ({
                 <div className="text-center">
                 <img className="wd-profile-image-large" src={user.profPic} alt=""/>
                 <p>Name: {user.username}</p>
+                {(mods.filter(m => m.username === user.username).length > 0)?
+                <p className="text-center text-success">Moderator</p>
+                :
+                <></>
+                }
+                </div>
+                {(user.isBanned)?
+                <div className="text-center">
+                    <span className="text-danger">This user has been banned</span>
+                </div>:
+                <>
+                <div className="text-center">
                 {user.favoriteColors.map(color => {return(<MTGColor c={color}/>);})}
                 </div>
                 <hr/>
@@ -47,10 +76,23 @@ const ProfileComponent = ({
                         (curUser === user.username)?
                             <Link to={`/edit-profile/user=?${user.username}/${user.username}`}
                                   className="btn btn-primary">Edit Profile</Link>:
+                            (mods.filter(m => m.username === curUser).length > 0)?
+                            (mods.filter(m => m.username === user.username).length > 0)?
+                            <>
+                            <button className="btn btn-primary" onClick={modUser} disabled="disabled">Mod User</button>
+                            <button className="btn btn-danger" onClick={banHammer}>Ban User</button>
+                            </>
+                            :
+                            <>
+                            <button className="btn btn-primary" onClick={modUser}>Mod User</button>
+                            <button className="btn btn-danger" onClick={banHammer}>Ban User</button>
+                            </>
+                            :
                             <Link to={`/reported/user=?${curUser}`}><button className="btn btn-danger" onClick={reportUser}>Report Profile</button></Link>
                     }
-
                 </div>
+                </>
+                }
             </li>
         </ul>
     );

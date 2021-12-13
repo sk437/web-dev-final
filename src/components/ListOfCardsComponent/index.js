@@ -8,7 +8,7 @@ const CardList = (cards) => {
     <>
         <ul className="list-group">
         {
-            cards.cards.slice(0, 20).filter(u => u.image_uris.png).map(card => {
+            cards.cards.slice(0, 20).map(card => {
                 console.log(card);
                 return(<CardListItem card={card}/>);
             })

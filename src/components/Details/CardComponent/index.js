@@ -126,11 +126,21 @@ const CardComponent = ({
     return(
         <ul className="list-group">
             <li className="list-group-item">
-                <img className="wd-card-image mr-2" src={card.image_uris.png} alt=""/>
+                                {(card.image_uris)?
+                                <img className="wd-card-image mr-2" src={card.image_uris.png} alt=""/> :
+                                <>
+                                <img className="wd-card-image-small mr-2" src={card.card_faces[0].image_uris.png} alt=""/>
+                                <img className="wd-card-image-small mr-2" src={card.card_faces[1].image_uris.png} alt=""/>
+                                </>
+                                }
                 <p>Name: {card.name}</p>
                 <p>Converted Mana Cost: {card.cmc}</p>
                 <p>Type: {card.type_line}</p>
-                <p>Text: {card.oracle_text}</p>
+                <p>Text: {(card.oracle_text)? card.oracle_text :
+                <>
+                {card.card_faces[0].oracle_text}  {"//"}  {card.card_faces[1].oracle_text}
+                </>}
+                </p>
             </li>
         </ul>
     );

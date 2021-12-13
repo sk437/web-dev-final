@@ -58,6 +58,11 @@ const LoginComponent = () => {
                             <br/>
                             <span className="text-danger">Invalid username or password</span>
                         </> :
+                        (users.filter(u => u.username === user.username).length > 0 && users.filter(u => u.username === user.username)[0].isBanned)?
+                        <>
+                            <Link to="/banned"><button className="btn btn-primary rounded-pill">Login</button></Link>
+                        </>
+                        :
                         <>
                             <Link to={`/home/user=?${user.username}`}><button className="btn btn-primary rounded-pill"
                                                      onClick={login}>Login</button></Link>
