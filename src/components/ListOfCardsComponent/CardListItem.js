@@ -124,10 +124,24 @@ const CardListItem = ({
                                  }
                                }
 }) => {
+    let url = window.location.href;
+    if (url.includes("user=?")) {
+        if (url.lastIndexOf("/") < url.indexOf("user=?")){
+            url = url.substring(url.indexOf("user=?") + 6);
+        }
+        else {
+            url = url.substring(url.indexOf("user=?") + 6, url.lastIndexOf("/"));
+        }
+    }
+    else {
+        url = "";
+    }
+
     return(
     <>
         <li className="list-group-item">
-            <Link to={`/details/${card.id}`}><img className="wd-card-image-small mr-2" src={card.image_uris.border_crop} alt=""/></Link>
+            <Link to={`/details/user=?${url}/${card.id}`}>
+                <img className="wd-card-image-small mr-2" src={card.image_uris.png} alt=""/></Link>
             <h5>{card.name}</h5>
             <p>Converted Mana Cost: {card.cmc}</p>
             <p>Type: {card.type_line}</p>

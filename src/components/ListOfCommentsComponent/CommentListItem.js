@@ -1,6 +1,9 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {Link} from "react-router-dom";
-import Users from "../users.json";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAllUsers} from "../../services/users-service";
+
+const selectAllUsers = (state) => state.users;
 
 const CommentListItem = ({
                         comment = {
@@ -10,15 +13,33 @@ const CommentListItem = ({
                             flags: 0,
                         }
 }) => {
-    const images = require.context('../../../public/images', true)
-    let poster = Users.find(user => {return user.username == comment.username})
-    let curImage = images(poster.profPic).default
+    let url = window.location.href;
+    if (url.includes("user=?")) {
+        if (url.lastIndexOf("/") < url.indexOf("user=?")){
+            url = url.substring(url.indexOf("user=?") + 6);
+        }
+        else {
+            url = url.substring(url.indexOf("user=?") + 6, url.lastIndexOf("/"));
+        }
+    }
+    else {
+        url = "";
+    }
+    console.log(comment)
+    const users = useSelector(selectAllUsers);
+    const dispatch = useDispatch();
+    useEffect(() => fetchAllUsers(dispatch), []);
+
+    let poster = users.find(user => {
+        return user.username === comment.username}
+    );
+
     return(
     <>
         <li className="list-group-item">
-            <img className="wd-profile-image-comment mr-2" src={curImage}></img>
+            <img className="wd-profile-image-comment mr-2" src={poster.profPic} alt=''/>
             <button className="btn btn-danger btn-sm wd-float-right">Report</button>
-            <Link to={`/profile/${poster.username}`}><h5>{poster.username}</h5></Link>
+            <Link to={`/profile/user=?${url}/${poster.username}`}><h5>{poster.username}</h5></Link>
             <span>{comment.body}</span>
         </li>
     </>

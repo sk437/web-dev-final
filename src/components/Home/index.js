@@ -2,9 +2,21 @@ import React from "react";
 import NavigationSidebar from "../NavigationSidebar";
 import LoginComponent from "../LoginComponent";
 import IntroPanel from "./IntroPanel";
-import CardListComponent from "../ListOfCardsComponent"
+import CardListComponent from "../Profile/CommentList"
 
 const Home = () => {
+    let url = window.location.href
+    if (url.includes("user=?")) {
+        if (url.lastIndexOf("/") < url.indexOf("user=?")){
+            url = url.substring(url.indexOf("user=?") + 6);
+        }
+        else {
+            url = url.substring(url.indexOf("user=?") + 6, url.lastIndexOf("/"));
+        }
+    }
+    else {
+        url = "";
+    }
     return (
         <>
             <div className="row mt-2">
@@ -23,8 +35,10 @@ const Home = () => {
                      style={{"position": "relative"}}>
                     <IntroPanel/>
                     <br/>
-                    <p className="text-center">Some Popularly Discussed Cards</p>
-                    <CardListComponent/>
+                    {(url === "")?
+                    <p className="text-center">Some Popularly Discussed Cards</p> :
+                        <p className="text-center">Cards You Have Commented On Recently</p>}
+                    <CardListComponent userId={url}/>
                 </div>
             </div>
         </>

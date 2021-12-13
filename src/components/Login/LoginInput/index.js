@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 const selectAllUsers = (state) => state.users;
 
 const LoginComponent = () => {
+
     const users = useSelector(selectAllUsers);
     const dispatch = useDispatch();
     useEffect(() => fetchAllUsers(dispatch), []);
@@ -58,7 +59,7 @@ const LoginComponent = () => {
                             <span className="text-danger">Invalid username or password</span>
                         </> :
                         <>
-                            <Link to="/home"><button className="btn btn-primary rounded-pill"
+                            <Link to={`/home/user=?${user.username}`}><button className="btn btn-primary rounded-pill"
                                                      onClick={login}>Login</button></Link>
                         </>}
                         </div>

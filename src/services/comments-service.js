@@ -2,16 +2,15 @@ const COMMENT_API = 'http://localhost:4000/api/comments';
 
 export const fetchAllComments = (dispatch) =>
     fetch(COMMENT_API)
-        .then(response => response.json())
-        .then(comments =>
+        .then(response => response.json()).then(comments => {
             dispatch({
                 type: 'fetch-all-comments',
                 comments
-            })
+            })}
         );
 
 export const createNewComment = (dispatch, fields) =>
-    fetch(COMMENT_API, {
+    fetch(`${COMMENT_API}/create`, {
         method: 'POST',
         body: JSON.stringify(fields),
         headers: {

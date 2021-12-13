@@ -1,10 +1,8 @@
 import React from "react"
 
-const MTGColor = (c = "./mtgwhite.png") => {
-    const images = require.context('../../../../public/images', true)
-    let curImage = images(c.c).default
+const MTGColor = (c = "/images/mtgwhite.png") => {
     return(
-        <img className="wd-profile-image mr-2" src={curImage} alt=""/>
+        <img className="wd-profile-image mr-2" src={c.c} alt=""/>
     );
 }
 export default MTGColor;

@@ -126,7 +126,7 @@ const CardComponent = ({
     return(
         <ul className="list-group">
             <li className="list-group-item">
-                <img className="wd-card-image mr-2" src={card.image_uris.border_crop} alt=""/>
+                <img className="wd-card-image mr-2" src={card.image_uris.png} alt=""/>
                 <p>Name: {card.name}</p>
                 <p>Converted Mana Cost: {card.cmc}</p>
                 <p>Type: {card.type_line}</p>

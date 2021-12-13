@@ -2,11 +2,12 @@ const USER_API = 'http://localhost:4000/api/users';
 
 export const fetchAllUsers = (dispatch) =>
     fetch(USER_API)
-        .then(response => response.json()).then(users =>
+        .then(response => response.json()).then(users => {
+        console.log(users)
         dispatch({
             type: 'fetch-all-users',
             users
-        })
+        })}
     );
 
 
@@ -28,14 +29,16 @@ export const updateProfile = (user, fields) => {
         }
     })};
 
-export const updateReport = (user, bannedUser) =>
-    fetch(`${USER_API}/${user._id}/report`, {
+export const updateReport = (user, bannedUser) => {
+    console.log(user)
+    console.log(bannedUser)
+    fetch(`${USER_API}/${user}/report`, {
         method: 'PUT',
         body: JSON.stringify(bannedUser),
         headers: {
             'content-type': 'application/json'
         }
-    });
+    })};
 
 
 

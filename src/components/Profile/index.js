@@ -1,15 +1,31 @@
-import React from "react";
+import React, {useEffect} from "react";
 import LoginComponent from "../LoginComponent";
 import NavigationSidebar from "../NavigationSidebar";
 import ProfileComponent from "./ProfileComponent";
 import CommentList from "./CommentList";
-import Users from "../users"
+import {fetchAllUsers} from "../../services/users-service";
+import {useDispatch, useSelector} from "react-redux";
+
+const selectAllUsers = (state) => state.users;
 
 const Profile = () => {
-    let url = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+    let url = window.location.href
+    let curUser;
+    let user;
+    if (url.includes("user=?")) {
+        curUser = url.substring(url.indexOf("user=?") + 6, url.lastIndexOf("/"));
+    }
+    else {
+        curUser = "";
+    }
+    user = url.substring(url.lastIndexOf("/") + 1)
+    const users = useSelector(selectAllUsers);
+    const dispatch = useDispatch();
+
+    useEffect(() => fetchAllUsers(dispatch), []);
 
     function getUserById(userId) {
-        return Users.find(user => {
+        return users.find(user => {
             return userId === user.username
         })
     }
@@ -29,10 +45,10 @@ const Profile = () => {
                     <NavigationSidebar active='profile'/>
                 </div>
                 <div className="col-9">
-                    <ProfileComponent user={getUserById(url)}/>
-                    <br></br>
+                    <ProfileComponent user={getUserById(user)}/>
+                    <br/>
                     <p className="text-center">Cards this user has commented on</p>
-                    <CommentList userId={url}/>
+                    <CommentList userId={user}/>
                 </div>
             </div>
         </>

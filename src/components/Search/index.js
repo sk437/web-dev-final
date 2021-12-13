@@ -22,9 +22,7 @@ const Search = () => {
                 </div>
                 <div className="col-9">
                     <SearchComponent/>
-                    <br></br>
-                    <p className="text-center">Search Results</p>
-                    <CardListComponent/>
+                    <br/>
                 </div>
             </div>
         </>

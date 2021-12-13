@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import MTGColor from "./MTGColor";
-import {updateProfile} from "../../../services/users-service";
+import {fetchAllUsers, updateProfile} from "../../../services/users-service";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
-let newPic = false;
-let newBio = false;
+const selectAllUsers = (state) => state.users;
+
 
 const ProfileComponent = ({
                               def = {
@@ -15,19 +16,24 @@ const ProfileComponent = ({
                               }
                           }) => {
     let url = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
-    const [user, setUser] = useState({});
-    const API_URL = 'http://localhost:4000/api';
-    const getProfile = () => {
-        fetch(`${API_URL}/profile`, {
-            method: 'POST',
-            credentials: 'include'
-        }).then(res => res.json())
-            .then(user => {
-                console.log(user);
-                setUser(user);
-            }).catch(res => {
-            setUser("NONE");
-        });
+    const users = useSelector(selectAllUsers);
+    const dispatch = useDispatch();
+    useEffect(() => fetchAllUsers(dispatch), []);
+
+    console.log(users);
+
+    function getUserById(userId) {
+        return users.find(user => {
+            return userId === user.username
+        })
+    }
+
+    let user;
+    if (!(url === "")) {
+        user = getUserById(url);
+        if(!user) {
+            url = ""
+        }
     }
     function updateProfileHandler(user) {
         let colors = [];
@@ -46,28 +52,28 @@ const ProfileComponent = ({
         if (col.white) {
             colors.push("/images/mtgwhite.png");
         }
-        console.log(colors);
         let fields = [bio, colors, pic];
-        console.log(url);
-        updateProfile(url, fields);
-    };
+        updateProfile(url, fields)
+    }
 
-    useEffect(getProfile, []);
-    const [pic, setPic] = useState();
+    if (!user) {
+        user = {profPic: "/images/anonymous.jpg", bio:"No Bio", favoriteColors: []}
+    }
+    const [pic, setPic] = useState(user.profPic);
     const [col, setCol] = useState({
-        green: false,
-        blue: false,
-        red: false,
-        black: false,
-        white: false
+        green: user.favoriteColors.includes('/images/mtggreen.png'),
+        blue: user.favoriteColors.includes('/images/mtgblue.png'),
+        red: user.favoriteColors.includes('/images/mtgred.png'),
+        black: user.favoriteColors.includes('/images/mtgblack.png'),
+        white: user.favoriteColors.includes('/images/mtgwhite.png')
     })
 
-    const [bio, setBio] = useState();
+    const [bio, setBio] = useState(user.bio);
     return (
         <ul className="list-group">
             <li className="list-group-item">
                 <div className="text-center">
-                    <img className="wd-profile-image-large" src={(newPic) ? pic : user.profPic} alt=""/>
+                    <img className="wd-profile-image-large" src={pic} alt=""/>
                 </div>
                 <br/>
                 <p className="text-primary text-center">Choose a new profile image:</p>
@@ -77,9 +83,9 @@ const ProfileComponent = ({
 
                 <label className="form-check-label">
                     <input className="form-check-input" type="radio" name="profimage" id="charles"
+                           defaultChecked={(pic === '/images/charlesV.jpg')? 'checked': ''}
                            onClick={e => {
                                setPic('/images/charlesV.jpg');
-                               newPic = true;
                            }}/>
                     <MTGColor c="./charlesV.jpg"/>
                 </label>
@@ -88,9 +94,9 @@ const ProfileComponent = ({
 
                 <label className="form-check-label">
                     <input className="form-check-input" type="radio" name="profimage" id="tibalt"
+                           defaultChecked={(pic === '/images/tibalt.jpg')? 'checked': ''}
                            onClick={e => {
                                setPic('/images/tibalt.jpg');
-                               newPic = true
                            }}/>
                     <MTGColor c="./tibalt.jpg"/>
                 </label>
@@ -99,9 +105,9 @@ const ProfileComponent = ({
 
                 <label className="form-check-label">
                     <input className="form-check-input" type="radio" name="profimage" id="nicolbolas"
+                           defaultChecked={(pic === '/images/nicolbolas.jpg')? 'checked': ''}
                            onClick={e => {
                                setPic('/images/nicolbolas.jpg');
-                               newPic = true
                            }}/>
                     <MTGColor c="./nicolbolas.jpg"/>
                 </label>
@@ -110,9 +116,9 @@ const ProfileComponent = ({
 
                 <label className="form-check-label">
                     <input className="form-check-input" type="radio" name="profimage" id="liliana"
+                           defaultChecked={(pic === '/images/liliana.jpg')? 'checked': ''}
                            onClick={e => {
                                setPic('/images/liliana.jpg');
-                               newPic = true
                            }}/>
                     <MTGColor c="./liliana.jpg"/>
                 </label>
@@ -121,9 +127,9 @@ const ProfileComponent = ({
 
                 <label className="form-check-label">
                     <input className="form-check-input" type="radio" name="profimage" id="karn"
+                           defaultChecked={(pic === '/images/karn.jpg')? 'checked': ''}
                            onClick={e => {
                                setPic('/images/karn.jpg');
-                               newPic = true
                            }}/>
                     <MTGColor c="./karn.jpg"/>
                 </label>
@@ -137,6 +143,7 @@ const ProfileComponent = ({
 
                     <label className="form-check-label">
                         <input className="form-check-input " type="checkbox" id="white"
+                               defaultChecked={(col.white === true)? 'checked': ''}
                                onClick={e =>
                                    setCol({...col, white: !col.white})
                                }
@@ -148,6 +155,7 @@ const ProfileComponent = ({
 
                     <label className="form-check-label">
                         <input className="form-check-input" type="checkbox" id="blue"
+                               defaultChecked={(col.blue === true)? 'checked': ''}
                                onClick={e =>
                                    setCol({...col, blue: !col.blue})
                                }
@@ -159,6 +167,7 @@ const ProfileComponent = ({
 
                     <label className="form-check-label">
                         <input className="form-check-input" type="checkbox" id="red"
+                               defaultChecked={(col.red === true)? 'checked': ''}
                                onClick={e =>
                                    setCol({...col, red: !col.red})
                                }
@@ -170,6 +179,7 @@ const ProfileComponent = ({
 
                     <label className="form-check-label">
                         <input className="form-check-input" type="checkbox" id="black"
+                               defaultChecked={(col.black === true)? 'checked': ''}
                                onClick={e =>
                                    setCol({...col, black: !col.black})
                                }
@@ -181,6 +191,7 @@ const ProfileComponent = ({
 
                     <label className="form-check-label">
                         <input className="form-check-input" type="checkbox" id="green"
+                               defaultChecked={(col.green === true)? 'checked': ''}
                                onClick={e =>
                                    setCol({...col, green: !col.green})
                                }
@@ -193,14 +204,15 @@ const ProfileComponent = ({
                 <textarea className="form-control wd-max-width" id="editProfile" rows="15"
                           onChange={(e) => {
                               setBio(e.target.value);
-                              newBio = true;
                           }}
-                          defaultValue={user.bio}>
+                          defaultValue={bio}>
                         </textarea>
                 <br/>
                 <div className="text-center">
-                    <Link to={`/profile/${user.username}`}>
-                        <button className="btn btn-primary" onClick={updateProfileHandler}>
+                    <Link to={`/profile/user=?${url}/${url}`}>
+                        <button className="btn btn-primary" onClick={
+                            updateProfileHandler
+                        }>
                             Save changes
                         </button>
                     </Link>

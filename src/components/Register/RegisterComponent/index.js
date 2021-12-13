@@ -52,7 +52,7 @@ const RegisterComponent = () => {
                             <button className="btn btn-primary rounded-pill"
                                     onClick={register} disabled="disabled">Register</button>
                         </> :
-                    <Link to={`/edit-profile/${user.username}`}><button className="btn btn-primary rounded-pill"
+                    <Link to={`/edit-profile/user=?${user.username}/${user.username}`}><button className="btn btn-primary rounded-pill"
                             onClick={register}>Register</button></Link>}
                 </div>
                 <br/>
