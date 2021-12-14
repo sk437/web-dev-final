@@ -59,6 +59,7 @@ const ProfileComponent = ({
                 <></>
                 }
                 </div>
+
                 {(user.isBanned)?
                 <div className="text-center">
                     <span className="text-danger">This user has been banned</span>
@@ -70,9 +71,19 @@ const ProfileComponent = ({
                 <hr/>
                 <p>Biography: {user.bio}</p>
                 <br/>
+                {(curUser === user.username)?
+                        <span className="text-danger">Your Number of Flags is {user.reports}.</span> : <></>
+                }
+                <br/>
                 <div className="text-center">
                     {(curUser === "" || user.reportedBy.includes(curUser))?
-                        <button className="btn btn-danger" disabled="disabled">Report Profile</button>:
+                        ((curUser === "")?
+                            <Link to='/login'>
+                                <button className="btn btn-danger" >Report Profile</button>
+                            </Link> :
+                                <button className="btn btn-danger" disabled="disabled">Report Profile</button>
+                        )
+                        :
                         (curUser === user.username)?
                             <Link to={`/edit-profile/user=?${user.username}/${user.username}`}
                                   className="btn btn-primary">Edit Profile</Link>:
@@ -88,7 +99,10 @@ const ProfileComponent = ({
                             <button className="btn btn-danger" onClick={banHammer}>Ban User</button>
                             </>
                             :
-                            <Link to={`/reported/user=?${curUser}`}><button className="btn btn-danger" onClick={reportUser}>Report Profile</button></Link>
+                            <Link to={`/reported/user=?${curUser}`}>
+                                <button className="btn btn-danger" onClick={reportUser}>
+                                    Report Profile
+                                </button></Link>
                     }
                 </div>
                 </>

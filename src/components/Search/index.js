@@ -1,9 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import SearchComponent from "./SearchComponent";
 import NavigationSidebar from "../NavigationSidebar";
 import LoginComponent from "../LoginComponent";
-import CardListComponent from "../ListOfCardsComponent";
 
 const Search = () => {
     return (

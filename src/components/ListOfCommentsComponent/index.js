@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import CommentListItem from "./CommentListItem";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllComments, createNewComment} from "../../services/comments-service";
+import {Link} from "react-router-dom";
 
 const selectAllComments = (state) => state.comments;
 
@@ -46,8 +47,12 @@ const CommentList = (cardId = "5a5841fa-4f30-495a-b840-3ef5a2af8fad") => {
                                   }}/>
                     </div>
                     <div className="text-center">
-                        <button className="btn btn-primary"
-                                onClick={postCommentHandler}>Post</button>
+                        {(url === "")?
+                            <Link to={'/login'}>
+                            <button className="btn btn-primary">Post</button></Link> :
+                            <button className="btn btn-primary"
+                                    onClick={postCommentHandler}>Post</button>
+                        }
                     </div>
                 </li>
                 {

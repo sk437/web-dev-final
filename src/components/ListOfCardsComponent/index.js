@@ -2,14 +2,12 @@ import React from "react";
 import CardListItem from "./CardListItem";
 
 const CardList = (cards) => {
-    console.log("cards")
-    console.log(cards);
     return (
     <>
         <ul className="list-group">
-        {
+
+        {(!cards.cards)? <h4 className="text-center">No results</h4> :
             cards.cards.slice(0, 20).map(card => {
-                console.log(card);
                 return(<CardListItem card={card}/>);
             })
         }

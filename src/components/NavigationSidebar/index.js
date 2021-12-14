@@ -16,6 +16,7 @@ const NavigationSidebar = ({
     else {
         url = "";
     }
+    console.log(url);
     return(
         <>
             <div className="list-group">

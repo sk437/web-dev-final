@@ -2,7 +2,21 @@ import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom";
 
 const CardListItemById = (cardId = '5a5841fa-4f30-495a-b840-3ef5a2af8fad') => {
-    let url = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+    let url = window.location.href
+    if (url.includes("user=?")) {
+        if (url.lastIndexOf("/") < url.indexOf("user=?")){
+            url = url.substring(url.indexOf("user=?") + 6);
+        }
+        else {
+            url = url.substring(url.indexOf("user=?") + 6, url.lastIndexOf("/"));
+        }
+    }
+    else {
+        url = "";
+    }
+
+
+
     const [card, setCard] = useState({
             "object": "card",
             "id": "5a5841fa-4f30-495a-b840-3ef5a2af8fad",

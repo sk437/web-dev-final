@@ -202,6 +202,7 @@ const ProfileComponent = ({
                 <br/>
                 <label for="editProfile">Edit Bio</label>
                 <textarea className="form-control wd-max-width" id="editProfile" rows="15"
+                          placeholder="Bio"
                           onChange={(e) => {
                               setBio(e.target.value);
                           }}

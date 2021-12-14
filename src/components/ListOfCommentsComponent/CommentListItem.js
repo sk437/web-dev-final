@@ -48,10 +48,15 @@ const CommentListItem = ({
     <>
         <li className="list-group-item">
             <img className="wd-profile-image-comment mr-2" src={poster.profPic} alt=''/>
-            {(user.username === poster.username || comment.flaggedBy.includes(user.username))?
-                <button className="btn btn-danger btn-sm wd-float-right" disabled="disabled">Report</button>:
+            {(!user || user.username === poster.username || comment.flaggedBy.includes(user.username))?
+                ((!user)?
+                    <Link to='/login'>
+                        <button className="btn btn-danger btn-sm wd-float-right">Report</button>
+                    </Link> :
+                <button className="btn btn-danger btn-sm wd-float-right" disabled="disabled">Report</button>):
                 <>
-                <Link to={`/reported/user=?${url}`}><button className="btn btn-danger btn-sm wd-float-right" onClick={reportHandler}>Report</button></Link>
+                <Link to={`/reported/user=?${url}`}><button className="btn btn-danger btn-sm wd-float-right"
+                                                            onClick={reportHandler}>Report</button></Link>
                 </>
             }
             <Link to={`/profile/user=?${url}/${poster.username}`}><h5>{poster.username}</h5></Link>

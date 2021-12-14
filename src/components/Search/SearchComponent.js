@@ -10,7 +10,6 @@ const SearchComponent = () => {
     if (url.includes("search?order=name&q=")) {
         if (url.lastIndexOf("/") > url.indexOf("search?order=name&q=")) {
             url = url.substring(url.indexOf("search?order=name&q=") + 20, url.lastIndexOf("/"));
-            console.log(url);
         } else {
             url = url.substring(url.indexOf("search?order=name&q=") + 20, url.lastIndexOf("/"));
         }
@@ -73,8 +72,9 @@ const SearchComponent = () => {
         fetch(`https://api.scryfall.com/cards/${formatQuery()}`)
             .then(res => res.json())
             .then(re => setResults(re.data))
+        console.log("Test");
+        console.log(results);
     }
-
     let urlU = window.location.href;
     if (urlU.includes("user=?")) {
         if (urlU.lastIndexOf("/") < urlU.indexOf("user=?")){

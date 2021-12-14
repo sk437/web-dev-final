@@ -3,7 +3,6 @@ import LoginComponent from "../LoginComponent";
 import CardComponent from "./CardComponent";
 import NavigationSidebar from "../NavigationSidebar";
 import CommentList from "../ListOfCommentsComponent";
-import Cards from "../ListOfCardsComponent/cards";
 
 
 const Details = () => {
